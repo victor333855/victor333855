@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Registros</title>
+    <style>
+        body {
+            font-family: Comic Sans MS, sans-serif;
+        }
+        .container {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 5px;
+            box-shadow: 10px 10px 40px black;
+
+
+        }
+        .base{
+            text-align: center;
+            box-shadow: 10px 10px 30px gold;
+            border-radius: 7px;
+            background-color:#1c1c1c;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid gold;
+            border-radius: 5px;
+            background-color: #725827;
+
+        }
+    </style>
+</head>
+<div class="base">
+    <img src="vecteezy_3d-watercolor-golden-barazil-carnival-mask_22661500.png" height="auto" width="6%">
+    <img src="Cool Text - Gala y Antifaces 469286347731197.png" height="" width="30%">  
+    <img src="vecteezy_3d-watercolor-golden-barazil-carnival-mask_22661609.png" height="auto" width="6%">  
+</div>
+<body>
+    <br><br>
+
+<div class="container">
+    <center><h2>Lista de Registros</h2></center>
+    <ul id="registrationList"></ul>
+    <p>Registrar más datos <a href="registro.html">aquí</a>.</p>
+</div>
+
+<script>
+    window.onload = function() {
+        const registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+        const listElement = document.getElementById('registrationList');
+
+        if (registrations.length === 0) {
+            listElement.innerHTML = '<li>No hay registros disponibles.</li>';
+        } else {
+            registrations.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - Tel: ${item.phone} - Cédula: ${item.cedula}`;
+                listElement.appendChild(listItem);
+            });
+        }
+    };
+</script>
+
+</body>
+</html>

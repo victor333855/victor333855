@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Datos</title>
+    <style>
+        body *{
+            font-family: Harrington, sans-serif;
+        }
+        .container {
+            width: 25%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid gold;
+            border-radius: 5px;
+            background-color: #725827;
+        }
+        .base{
+            text-align: center;
+            box-shadow: 10px 10px 30px gold;
+            border-radius: 7px;
+            background-color:#1c1c1c;
+        }
+        .logo{
+            text-align: center;
+            color: red;
+
+        }
+        .logo img{
+            background-color: #1c1c1c;
+            border-radius: 10px;
+        }
+        input {
+            width: 90%; /* Ajusta el ancho */
+            height: 3%; /* Ajusta la altura */
+            font-size: 12px; /* Aumenta el tamaño de la fuente */
+            padding: 10px; /* Espaciado interno */
+            border: 1px solid black; /* Borde */
+            border-radius: 5px; /* Bordes redondeados */
+        }
+        .mi-boton {
+            background-color: #4c3b14; /* Color de fondo verde */
+            color: black; /* Color del texto */
+            padding: 15px 30px; /* Espaciado interno (altura y ancho) */
+            font-size: 18px; /* Tamaño de la fuente */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar el ratón */
+            transition: background-color 0.3s; /* Transición suave para el color de fondo */
+            box-shadow: 2px 2px 6px black;
+        }
+
+        .mi-boton:hover {
+            background-color: #efb810; /* Color de fondo al pasar el ratón */
+        }
+
+         .comentarios {
+            margin-top: 20px; /* Espacio entre formularios */
+            
+        }
+        .lista-comentarios {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+         input, textarea, button {
+            width: 50%; /* Ajusta el ancho a 100% */
+            padding: 10px; /* Espaciado interno */
+            margin: 10px 0; /* Margen superior e inferior */
+            border: 1px solid black; /* Borde */
+            border-radius: 5px; /* Bordes redondeados */
+
+        }
+         textarea {
+            height: 50%; /* Aumenta la altura del área de texto */
+            font-size: 15px; /* Aumenta el tamaño de la fuente */
+        }
+        .final{
+            background-color: #2F4F4F;
+            max-width: 80%;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px;
+        }
+       
+    </style>
+</head>
+<div class="base">
+    <img src="vecteezy_3d-watercolor-golden-barazil-carnival-mask_22661500.png" height="auto" width="6%">
+    <img src="Cool Text - Gala y Antifaces 469286347731197.png" height="" width="30%">  
+    <img src="vecteezy_3d-watercolor-golden-barazil-carnival-mask_22661609.png" height="auto" width="6%">  
+</div>
+<br>
+<br>
+<div class="logo">
+    <img src="Cool Text - Bienvenidos a la Primera 469289632162473.png" height="auto" width="30%"> 
+    <br>
+    <img src="Cool Text - De Premios 2024 469289810226554.png" height="auto" width="25%">
+</div>
+<body background="rpfknsfbsadk.gif">
+    <br>
+    
+
+<div class="container">
+    <h2>Registro de Asistencia</h2>
+    <form id="registrationForm">
+        <label for="name">Nombre y Apellidos:</label><br>
+        <input type="text" id="name" required><br><br>
+
+        <label for="phone">Número de Teléfono:</label><br>
+        <input type="text" id="phone" required><br><br>
+
+        <label for="cedula">Número de Cédula:</label><br>
+        <input type="text" id="cedula" required><br><br>
+
+        <button type="submit" class="mi-boton">Registrar</button>
+    </form>
+    
+</div>
+<br><br><br><br>
+
+<center>
+    <div class="final">
+<h2 class="comentarios">Dejanos un Comentario</h2>
+<form id="commentsForm">
+    <label for="comment"><h2>Comentario:</h2></label>
+    <textarea id="comment" rows="4" placeholder="Escribe tu comentario aquí..." required></textarea>
+    <button type="submit" class="mi-boton">Enviar Comentario</button>
+</form>
+
+<h2>Comentarios Registrados</h2>
+<ul id="commentsList" class="lista-comentarios"></ul>
+</div>
+</center>
+<br>
+
+
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const cedula = document.getElementById('cedula').value;
+
+        // Guardar los datos en el almacenamiento local
+        const registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+        registrations.push({ name, phone, cedula });
+        localStorage.setItem('registrations', JSON.stringify(registrations));
+
+        // Limpiar el formulario
+        document.getElementById('registrationForm').reset();
+        alert('Registro exitoso!');
+    });
+    document.getElementById('commentsForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const comment = document.getElementById('comment').value;
+
+        // Crear un nuevo elemento de lista para el comentario
+        const listItem = document.createElement('li');
+        listItem.textContent = comment;
+        document.getElementById('commentsList').appendChild(listItem);
+
+        // Limpiar el campo de comentario
+        document.getElementById('commentsForm').reset();
+        alert('Comentario enviado!');
+    });
+</script>
+
+</body>
+</html>
